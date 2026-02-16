@@ -8,104 +8,104 @@ const About = () => {
       <Header />
       
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
         <div className="mb-16 text-center space-y-6">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-slide-down">
-            About Perspective
+            About Austro-systems
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed animate-slide-up stagger-1">
-            A space for exploring ideas, finding inspiration, and discovering new ways of seeing the world.
+            Your trusted partner for web development, e-commerce, and digital growth.
           </p>
         </div>
 
-        {/* Story Section */}
         <section className="mb-16 space-y-6 text-muted-foreground animate-slide-up stagger-2">
           <h2 className="text-3xl font-bold text-foreground mb-6">Our Story</h2>
           <p>
-            Perspective began with a simple question: What if we could create a space where thoughtful ideas, 
-            meaningful stories, and practical wisdom come together to enrich our daily lives?
+            Austro-systems was founded with a clear mission: to make professional web development and 
+            digital marketing accessible to businesses of all sizes. We saw too many great businesses 
+            struggling online because of poor websites, complex tech stacks, and scattered digital strategies.
           </p>
           <p>
-            In a world saturated with information, we felt the need for something different—a publication that 
-            prioritizes depth over speed, quality over quantity, and authentic connection over viral content. 
-            Perspective is our answer to that need.
+            We bring together expertise in web development, Shopify e-commerce, domain management, and 
+            digital marketing under one roof. Whether you're launching your first website or scaling an 
+            existing online business, we're here to help you succeed.
           </p>
           <p>
-            We explore topics that matter: wellness practices that actually work, travel experiences that transform 
-            us, creative pursuits that bring joy, and personal growth strategies that lead to lasting change. 
-            Our approach is grounded in curiosity, backed by research, and enriched by lived experience.
+            Beyond client work, we're passionate about education. Our online courses empower entrepreneurs 
+            and developers to build their own digital skills, creating lasting value for their businesses.
           </p>
         </section>
 
-        {/* Mission Section */}
         <section className="mb-16 rounded-2xl bg-card p-8 md:p-12">
-          <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
+          <h2 className="text-3xl font-bold mb-6">What We Do</h2>
           <div className="space-y-4 text-muted-foreground">
-            <p>
-              We believe that how we see the world shapes how we experience it. Perspective is dedicated to 
-              offering fresh viewpoints, practical insights, and inspiring stories that help readers:
-            </p>
+            <p>We specialize in:</p>
             <ul className="space-y-3 ml-6">
               <li className="flex items-start">
                 <span className="mr-3 mt-1">•</span>
-                <span>Cultivate mindful, balanced lifestyles that prioritize wellbeing</span>
+                <span>Custom web development using modern frameworks and best practices</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3 mt-1">•</span>
-                <span>Explore the world with curiosity and respect</span>
+                <span>Full Shopify store setup, customization, and optimization</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3 mt-1">•</span>
-                <span>Express themselves authentically through creative pursuits</span>
+                <span>Domain registration, DNS configuration, and hosting setup</span>
               </li>
               <li className="flex items-start">
                 <span className="mr-3 mt-1">•</span>
-                <span>Embrace personal growth as a lifelong journey</span>
+                <span>Web development consultancy and technical strategy</span>
+              </li>
+              <li className="flex items-start">
+                <span className="mr-3 mt-1">•</span>
+                <span>Digital marketing including SEO, social media, and paid ads</span>
+              </li>
+              <li className="flex items-start">
+                <span className="mr-3 mt-1">•</span>
+                <span>Online courses for web development and digital skills</span>
               </li>
             </ul>
           </div>
         </section>
 
-        {/* Values Section */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-8">Our Values</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="p-6 rounded-xl bg-muted">
-              <h3 className="text-xl font-semibold mb-3">Authenticity</h3>
+              <h3 className="text-xl font-semibold mb-3">Quality First</h3>
               <p className="text-muted-foreground">
-                We share real experiences, honest reflections, and genuine insights—not curated perfection.
+                We never cut corners. Every project gets the same attention to detail, performance, and polish.
               </p>
             </div>
             <div className="p-6 rounded-xl bg-muted">
-              <h3 className="text-xl font-semibold mb-3">Thoughtfulness</h3>
+              <h3 className="text-xl font-semibold mb-3">Transparency</h3>
               <p className="text-muted-foreground">
-                Every article is carefully researched, thoughtfully written, and designed to add real value.
+                Clear communication, honest timelines, and straightforward pricing. No surprises.
               </p>
             </div>
             <div className="p-6 rounded-xl bg-muted">
-              <h3 className="text-xl font-semibold mb-3">Inclusivity</h3>
+              <h3 className="text-xl font-semibold mb-3">Education</h3>
               <p className="text-muted-foreground">
-                We welcome diverse perspectives and believe everyone's journey deserves respect and representation.
+                We believe in empowering clients with knowledge, not creating dependency.
               </p>
             </div>
             <div className="p-6 rounded-xl bg-muted">
-              <h3 className="text-xl font-semibold mb-3">Sustainability</h3>
+              <h3 className="text-xl font-semibold mb-3">Results-Driven</h3>
               <p className="text-muted-foreground">
-                We promote practices that are sustainable for individuals, communities, and the planet.
+                Beautiful design is great, but we measure success by the business outcomes we deliver.
               </p>
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="text-center py-12 rounded-2xl bg-card">
-          <h2 className="text-3xl font-bold mb-4">Join Our Community</h2>
+          <h2 className="text-3xl font-bold mb-4">Ready to Start?</h2>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Subscribe to receive our latest articles, insights, and inspiration directly in your inbox.
+            Let's discuss your project and find the right solution for your business.
           </p>
           <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8">
             <Mail className="mr-2 h-4 w-4" />
-            Subscribe Now
+            <a href="/contact">Contact Us</a>
           </Button>
         </section>
       </main>
