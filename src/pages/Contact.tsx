@@ -3,6 +3,16 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { toast } from "sonner";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().min(1, "Email is required").email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
+  subject: z.string().trim().min(1, "Subject is required").max(200, "Subject must be less than 200 characters"),
+  message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
+});
+
+type ContactFormErrors = Partial<Record<keyof z.infer<typeof contactSchema>, string>>;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,18 +21,31 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [errors, setErrors] = useState<ContactFormErrors>({});
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: ContactFormErrors = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as keyof ContactFormErrors;
+        if (!fieldErrors[field]) fieldErrors[field] = err.message;
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+    setErrors({});
     toast.success("Message sent! We'll get back to you soon.");
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name as keyof ContactFormErrors]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
   };
 
   return (
@@ -58,7 +81,9 @@ const Contact = () => {
                   required
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring"
                   placeholder="Your name"
+                  maxLength={100}
                 />
+                {errors.name && <p className="text-sm text-destructive mt-1">{errors.name}</p>}
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2">
@@ -73,7 +98,9 @@ const Contact = () => {
                   required
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring"
                   placeholder="your.email@example.com"
+                  maxLength={255}
                 />
+                {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
               </div>
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium mb-2">
@@ -88,7 +115,9 @@ const Contact = () => {
                   required
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring"
                   placeholder="What's this about?"
+                  maxLength={200}
                 />
+                {errors.subject && <p className="text-sm text-destructive mt-1">{errors.subject}</p>}
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">
@@ -103,7 +132,9 @@ const Contact = () => {
                   rows={6}
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring resize-none"
                   placeholder="Tell us what's on your mind..."
+                  maxLength={2000}
                 />
+                {errors.message && <p className="text-sm text-destructive mt-1">{errors.message}</p>}
               </div>
               <Button 
                 type="submit"
