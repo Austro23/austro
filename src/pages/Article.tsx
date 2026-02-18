@@ -23,13 +23,11 @@ const Article = () => {
 
   const getCategoryClass = (cat: string) => {
     const normalized = cat.toLowerCase();
-    if (normalized.includes("financ")) return "tag-financing";
-    if (normalized.includes("lifestyle")) return "tag-lifestyle";
-    if (normalized.includes("community")) return "tag-community";
-    if (normalized.includes("wellness")) return "tag-wellness";
-    if (normalized.includes("travel")) return "tag-travel";
-    if (normalized.includes("creativ")) return "tag-creativity";
-    if (normalized.includes("growth")) return "tag-growth";
+    if (normalized.includes("web dev")) return "tag-financing";
+    if (normalized.includes("shopify")) return "tag-lifestyle";
+    if (normalized.includes("digital market")) return "tag-community";
+    if (normalized.includes("consult")) return "tag-wellness";
+    if (normalized.includes("course")) return "tag-growth";
     return "tag-lifestyle";
   };
 
