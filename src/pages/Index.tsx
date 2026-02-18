@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import IntroSection from "@/components/IntroSection";
 import ServicesSection from "@/components/ServicesSection";
+import PricingSection from "@/components/PricingSection";
 import ArticleCard from "@/components/ArticleCard";
 import { articles } from "@/data/articles";
 
@@ -21,6 +22,9 @@ const Index = () => {
 
         {/* Services Section */}
         <ServicesSection />
+
+        {/* Pricing Section */}
+        <PricingSection />
 
         {/* Latest Blog Posts */}
         <section className="py-12">
