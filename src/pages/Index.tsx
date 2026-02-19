@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import IntroSection from "@/components/IntroSection";
 import ServicesSection from "@/components/ServicesSection";
+import CoursesSection from "@/components/CoursesSection";
 import PricingSection from "@/components/PricingSection";
 import ArticleCard from "@/components/ArticleCard";
 import { articles } from "@/data/articles";
@@ -22,6 +23,9 @@ const Index = () => {
 
         {/* Services Section */}
         <ServicesSection />
+
+        {/* Courses Section */}
+        <CoursesSection />
 
         {/* Pricing Section */}
         <PricingSection />
