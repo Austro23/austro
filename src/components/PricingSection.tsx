@@ -60,10 +60,10 @@ const PricingSection = () => {
         {packages.map((pkg, index) => (
           <div
             key={pkg.name}
-            className={`relative p-8 rounded-[2rem] transition-all duration-300 hover:scale-[1.02] animate-slide-up stagger-${Math.min(index + 1, 6)} ${
+            className={`relative p-8 rounded-[2rem] transition-all duration-500 hover:scale-[1.03] animate-slide-up stagger-${Math.min(index + 1, 6)} ${
               pkg.highlighted
-                ? "bg-primary text-primary-foreground"
-                : "bg-card"
+                ? "bg-gradient-to-br from-primary to-accent text-primary-foreground hover:shadow-[0_0_40px_-8px_hsl(var(--glow-primary)/0.4)]"
+                : "bg-card hover:shadow-[0_8px_40px_-10px_hsl(var(--glow-primary)/0.15)]"
             }`}
           >
             {pkg.highlighted && (

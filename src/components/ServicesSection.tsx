@@ -47,9 +47,9 @@ const ServicesSection = () => {
         {services.map((service, index) => (
           <div
             key={service.title}
-            className={`p-8 rounded-[2rem] bg-card hover:bg-muted/60 transition-all duration-300 hover:scale-[1.02] animate-slide-up stagger-${Math.min(index + 1, 6)}`}
+            className={`p-8 rounded-[2rem] bg-card hover:bg-muted/60 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_8px_40px_-10px_hsl(var(--glow-primary)/0.15)] animate-slide-up stagger-${Math.min(index + 1, 6)}`}
           >
-            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 transition-all duration-500 group-hover:bg-primary/20">
               <service.icon className="w-7 h-7 text-primary" />
             </div>
             <h3 className="text-xl font-bold mb-3">{service.title}</h3>

@@ -87,8 +87,8 @@ const CoursesSection = () => {
         {webDevCourses.map((course, index) => (
           <div
             key={course.id}
-            className={`group relative rounded-[2rem] overflow-hidden bg-card hover:bg-muted/60 transition-all duration-300 hover:scale-[1.02] animate-slide-up stagger-${Math.min(index + 1, 7)} ${
-              course.level === "Premium" ? "md:col-span-2 lg:col-span-3 border-2 border-primary/30" : ""
+            className={`group relative rounded-[2rem] overflow-hidden bg-card hover:bg-muted/60 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_12px_40px_-10px_hsl(var(--glow-primary)/0.2)] animate-slide-up stagger-${Math.min(index + 1, 7)} ${
+              course.level === "Premium" ? "md:col-span-2 lg:col-span-3 border-2 border-primary/30 glow-border" : ""
             }`}
           >
             {/* Badge */}
@@ -183,10 +183,10 @@ const CoursesSection = () => {
                 {/* CTA */}
                 <button
                   onClick={() => handlePayPal(course)}
-                  className={`w-full mt-2 px-6 py-3 rounded-full font-medium text-sm hover:scale-[1.02] transition-all flex items-center justify-center gap-2 ${
+                  className={`w-full mt-2 px-6 py-3 rounded-full font-medium text-sm hover:scale-[1.03] transition-all duration-500 flex items-center justify-center gap-2 ${
                     course.level === "Premium"
-                      ? "bg-gradient-to-r from-primary to-accent text-primary-foreground py-4 text-base font-bold"
-                      : "bg-primary text-primary-foreground hover:bg-primary/90"
+                      ? "bg-gradient-to-r from-primary to-accent text-primary-foreground py-4 text-base font-bold hover:shadow-[0_0_30px_-5px_hsl(var(--glow-primary)/0.4)]"
+                      : "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_-5px_hsl(var(--glow-primary)/0.3)]"
                   }`}
                 >
                   <GraduationCap className="w-4 h-4" />
