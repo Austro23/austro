@@ -1,6 +1,7 @@
-import { Clock, BookOpen, GraduationCap } from "lucide-react";
-import { webDevCourses } from "@/data/courses";
+import { Clock, BookOpen, GraduationCap, Star, Users, AlertTriangle } from "lucide-react";
+import { webDevCourses, Course } from "@/data/courses";
 import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
 
 const levelColor = (level: string) => {
   switch (level) {
@@ -10,9 +11,63 @@ const levelColor = (level: string) => {
       return "bg-amber-500/10 text-amber-600 border-amber-500/20";
     case "Advanced":
       return "bg-rose-500/10 text-rose-600 border-rose-500/20";
+    case "Premium":
+      return "bg-violet-500/10 text-violet-600 border-violet-500/20";
     default:
       return "";
   }
+};
+
+const StarRating = ({ rating, reviews }: { rating: number; reviews: number }) => (
+  <div className="flex items-center gap-1.5">
+    <div className="flex items-center">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <Star
+          key={star}
+          className={`w-4 h-4 ${
+            star <= Math.floor(rating)
+              ? "fill-yellow-400 text-yellow-400"
+              : star - 0.5 <= rating
+              ? "fill-yellow-400/50 text-yellow-400"
+              : "text-muted-foreground/30"
+          }`}
+        />
+      ))}
+    </div>
+    <span className="text-sm font-semibold">{rating}</span>
+    <span className="text-xs text-muted-foreground">({reviews.toLocaleString()} reviews)</span>
+  </div>
+);
+
+const handlePayPal = (course: Course) => {
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = "https://www.paypal.com/cgi-bin/webscr";
+  form.target = "_blank";
+
+  const fields: Record<string, string> = {
+    cmd: "_xclick",
+    business: "gabaemeaobakwe@gmail.com",
+    item_name: course.title,
+    item_number: course.id,
+    amount: course.price.toString(),
+    currency_code: "USD",
+    no_shipping: "1",
+    return: window.location.href,
+    cancel_return: window.location.href,
+  };
+
+  Object.entries(fields).forEach(([name, value]) => {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    input.value = value;
+    form.appendChild(input);
+  });
+
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
 };
 
 const CoursesSection = () => {
@@ -23,8 +78,8 @@ const CoursesSection = () => {
           Web Development Courses
         </h2>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Structured, project-based courses to take you from beginner to
-          professional web developer.
+          Structured, project-based courses trusted by <strong>20,000+</strong> students worldwide.
+          Invest in yourself — the ROI is unlimited.
         </p>
       </div>
 
@@ -32,69 +87,116 @@ const CoursesSection = () => {
         {webDevCourses.map((course, index) => (
           <div
             key={course.id}
-            className={`group rounded-[2rem] overflow-hidden bg-card hover:bg-muted/60 transition-all duration-300 hover:scale-[1.02] animate-slide-up stagger-${Math.min(index + 1, 6)}`}
+            className={`group relative rounded-[2rem] overflow-hidden bg-card hover:bg-muted/60 transition-all duration-300 hover:scale-[1.02] animate-slide-up stagger-${Math.min(index + 1, 7)} ${
+              course.level === "Premium" ? "md:col-span-2 lg:col-span-3 border-2 border-primary/30" : ""
+            }`}
           >
-            {/* Image */}
-            <div className="relative aspect-[3/2] overflow-hidden">
-              <img
-                src={course.image}
-                alt={course.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                loading="lazy"
-              />
-              <div className="absolute top-4 left-4">
-                <span
-                  className={`px-3 py-1 rounded-full text-xs font-semibold border ${levelColor(course.level)}`}
-                >
-                  {course.level}
-                </span>
+            {/* Badge */}
+            {course.badge && (
+              <div className="absolute top-0 left-0 right-0 z-10 bg-primary text-primary-foreground text-center text-xs font-bold py-1.5 tracking-wide">
+                {course.badge}
               </div>
-              <div className="absolute top-4 right-4">
-                <span className="px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-bold">
-                  ${course.price}
-                </span>
-              </div>
-            </div>
+            )}
 
-            {/* Content */}
-            <div className="p-6 space-y-4">
-              <h3 className="text-xl font-bold tracking-tight leading-tight">
-                {course.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                {course.description}
-              </p>
-
-              {/* Meta */}
-              <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5" />
-                  {course.duration}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <BookOpen className="w-3.5 h-3.5" />
-                  {course.lessons} lessons
-                </span>
-              </div>
-
-              {/* Topics */}
-              <div className="flex flex-wrap gap-2">
-                {course.topics.map((topic) => (
-                  <Badge
-                    key={topic}
-                    variant="secondary"
-                    className="text-xs font-normal"
+            <div className={course.level === "Premium" ? "md:flex" : ""}>
+              {/* Image */}
+              <div className={`relative overflow-hidden ${course.level === "Premium" ? "md:w-1/2 aspect-[3/2] md:aspect-auto" : "aspect-[3/2]"}`}>
+                <img
+                  src={course.image}
+                  alt={course.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className={`absolute ${course.badge ? "top-10" : "top-4"} left-4`}>
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-semibold border ${levelColor(course.level)}`}
                   >
-                    {topic}
-                  </Badge>
-                ))}
+                    {course.level}
+                  </span>
+                </div>
+                <div className={`absolute ${course.badge ? "top-10" : "top-4"} right-4 flex flex-col items-end gap-1`}>
+                  <span className="px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-bold">
+                    ${course.price}
+                  </span>
+                  <span className="text-xs line-through text-muted-foreground bg-background/80 px-2 py-0.5 rounded-full">
+                    ${course.originalPrice}
+                  </span>
+                </div>
               </div>
 
-              {/* CTA */}
-              <button className="w-full mt-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:bg-primary/90 hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
-                <GraduationCap className="w-4 h-4" />
-                Enroll Now
-              </button>
+              {/* Content */}
+              <div className={`p-6 space-y-4 ${course.level === "Premium" ? "md:w-1/2 md:flex md:flex-col md:justify-center" : ""}`}>
+                <h3 className={`font-bold tracking-tight leading-tight ${course.level === "Premium" ? "text-2xl md:text-3xl" : "text-xl"}`}>
+                  {course.title}
+                </h3>
+
+                <StarRating rating={course.rating} reviews={course.reviews} />
+
+                <p className={`text-sm text-muted-foreground leading-relaxed ${course.level === "Premium" ? "" : "line-clamp-3"}`}>
+                  {course.description}
+                </p>
+
+                {/* Social proof */}
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <Users className="w-3.5 h-3.5" />
+                  <span><strong>{course.enrolled.toLocaleString()}</strong> students enrolled</span>
+                </div>
+
+                {/* Meta */}
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <span className="flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5" />
+                    {course.duration}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <BookOpen className="w-3.5 h-3.5" />
+                    {course.lessons} lessons
+                  </span>
+                </div>
+
+                {/* Topics */}
+                <div className="flex flex-wrap gap-2">
+                  {course.topics.map((topic) => (
+                    <Badge
+                      key={topic}
+                      variant="secondary"
+                      className="text-xs font-normal"
+                    >
+                      {topic}
+                    </Badge>
+                  ))}
+                </div>
+
+                {/* Urgency */}
+                {course.urgency && (
+                  <div className="flex items-center gap-2 text-xs font-medium text-destructive bg-destructive/10 px-3 py-2 rounded-lg">
+                    <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+                    {course.urgency}
+                  </div>
+                )}
+
+                {/* Savings */}
+                <p className="text-xs font-semibold text-emerald-600">
+                  💰 You save ${course.originalPrice - course.price} ({Math.round(((course.originalPrice - course.price) / course.originalPrice) * 100)}% off)
+                </p>
+
+                {/* CTA */}
+                <button
+                  onClick={() => handlePayPal(course)}
+                  className={`w-full mt-2 px-6 py-3 rounded-full font-medium text-sm hover:scale-[1.02] transition-all flex items-center justify-center gap-2 ${
+                    course.level === "Premium"
+                      ? "bg-gradient-to-r from-primary to-accent text-primary-foreground py-4 text-base font-bold"
+                      : "bg-primary text-primary-foreground hover:bg-primary/90"
+                  }`}
+                >
+                  <GraduationCap className="w-4 h-4" />
+                  {course.level === "Premium" ? "Enroll Now — Transform Your Business" : `Enroll Now — $${course.price}`}
+                </button>
+
+                <p className="text-center text-[10px] text-muted-foreground">
+                  Secure checkout via PayPal • 30-day money-back guarantee
+                </p>
+              </div>
             </div>
           </div>
         ))}
