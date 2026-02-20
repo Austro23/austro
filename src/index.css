@@ -8,97 +8,101 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Warm, sophisticated palette inspired by the design */
-    --background: 36 44% 96%;
-    --foreground: 0 0% 18%;
+    /* Futuristic, bold palette — cyber-teal + electric violet */
+    --background: 220 20% 97%;
+    --foreground: 220 30% 12%;
 
-    --card: 33 40% 94%;
-    --card-foreground: 0 0% 18%;
+    --card: 220 25% 94%;
+    --card-foreground: 220 30% 12%;
 
-    --popover: 36 44% 96%;
-    --popover-foreground: 0 0% 18%;
+    --popover: 220 20% 97%;
+    --popover-foreground: 220 30% 12%;
 
-    --primary: 0 0% 18%;
-    --primary-foreground: 36 44% 96%;
+    --primary: 174 80% 38%;
+    --primary-foreground: 220 30% 98%;
 
-    --secondary: 25 30% 70%;
-    --secondary-foreground: 0 0% 18%;
+    --secondary: 260 50% 65%;
+    --secondary-foreground: 220 30% 98%;
 
-    --muted: 33 30% 88%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 220 15% 90%;
+    --muted-foreground: 220 10% 42%;
 
-    --accent: 140 20% 50%;
-    --accent-foreground: 36 44% 96%;
+    --accent: 260 60% 58%;
+    --accent-foreground: 220 30% 98%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 36 44% 96%;
+    --destructive: 0 80% 58%;
+    --destructive-foreground: 220 30% 98%;
 
-    --border: 33 25% 85%;
-    --input: 33 25% 85%;
-    --ring: 0 0% 18%;
+    --border: 220 18% 86%;
+    --input: 220 18% 86%;
+    --ring: 174 80% 38%;
 
     --radius: 1rem;
 
     /* Custom design tokens */
-    --tag-financing: 210 50% 75%;
-    --tag-lifestyle: 140 20% 70%;
-    --tag-community: 25 35% 60%;
-    --tag-wellness: 280 30% 75%;
-    --tag-travel: 195 50% 70%;
-    --tag-creativity: 330 40% 75%;
-    --tag-growth: 50 45% 70%;
+    --tag-financing: 210 55% 68%;
+    --tag-lifestyle: 160 40% 60%;
+    --tag-community: 30 45% 58%;
+    --tag-wellness: 280 40% 68%;
+    --tag-travel: 195 55% 62%;
+    --tag-creativity: 330 50% 68%;
+    --tag-growth: 50 50% 62%;
 
-    /* Polish design tokens */
-    --cream: 40 40% 90%;
-    --cream-foreground: 0 0% 18%;
-    --surface-elevated: 36 44% 98%;
-    --shadow-soft: 0 0% 0%;
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Futuristic design tokens */
+    --glow-primary: 174 80% 50%;
+    --glow-accent: 260 60% 65%;
+    --cream: 220 20% 92%;
+    --cream-foreground: 220 30% 12%;
+    --surface-elevated: 220 20% 99%;
+    --shadow-soft: 220 40% 20%;
+    --transition-smooth: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .dark {
-    --background: 0 0% 10%;
-    --foreground: 36 44% 96%;
+    --background: 225 25% 6%;
+    --foreground: 210 20% 92%;
 
-    --card: 0 0% 14%;
-    --card-foreground: 36 44% 96%;
+    --card: 225 22% 10%;
+    --card-foreground: 210 20% 92%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 36 44% 96%;
+    --popover: 225 25% 6%;
+    --popover-foreground: 210 20% 92%;
 
-    --primary: 36 44% 96%;
-    --primary-foreground: 0 0% 18%;
+    --primary: 174 80% 45%;
+    --primary-foreground: 225 25% 6%;
 
-    --secondary: 25 15% 30%;
-    --secondary-foreground: 36 44% 96%;
+    --secondary: 260 45% 50%;
+    --secondary-foreground: 210 20% 92%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 225 18% 16%;
+    --muted-foreground: 220 10% 55%;
 
-    --accent: 140 20% 45%;
-    --accent-foreground: 36 44% 96%;
+    --accent: 260 55% 55%;
+    --accent-foreground: 210 20% 92%;
 
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 36 44% 96%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 210 20% 92%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 36 44% 96%;
+    --border: 225 15% 18%;
+    --input: 225 15% 18%;
+    --ring: 174 80% 45%;
 
     /* Dark mode tag colors */
-    --tag-financing: 210 40% 45%;
-    --tag-lifestyle: 140 20% 40%;
-    --tag-community: 25 30% 40%;
-    --tag-wellness: 280 25% 45%;
-    --tag-travel: 195 40% 45%;
-    --tag-creativity: 330 35% 45%;
-    --tag-growth: 50 40% 45%;
+    --tag-financing: 210 45% 42%;
+    --tag-lifestyle: 160 30% 38%;
+    --tag-community: 30 35% 38%;
+    --tag-wellness: 280 30% 42%;
+    --tag-travel: 195 45% 42%;
+    --tag-creativity: 330 40% 42%;
+    --tag-growth: 50 45% 42%;
 
-    /* Dark mode polish tokens */
-    --cream: 40 20% 25%;
-    --cream-foreground: 36 44% 96%;
-    --surface-elevated: 0 0% 16%;
-    --shadow-soft: 0 0% 0%;
+    /* Dark mode futuristic tokens */
+    --glow-primary: 174 80% 45%;
+    --glow-accent: 260 55% 55%;
+    --cream: 225 18% 14%;
+    --cream-foreground: 210 20% 92%;
+    --surface-elevated: 225 22% 12%;
+    --shadow-soft: 225 40% 4%;
   }
 }
 
@@ -109,6 +113,12 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    transition: background-color 0.4s ease, color 0.3s ease;
+  }
+
+  /* Smooth transitions on all interactive elements */
+  a, button, input, [role="button"] {
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   html {
@@ -123,20 +133,32 @@ All colors MUST be HSL.
 @layer utilities {
   .card-hover {
     @apply transition-all duration-500 hover:scale-[1.02];
-    box-shadow: 0 4px 20px -4px hsl(var(--shadow-soft) / 0.1);
+    box-shadow: 0 4px 20px -4px hsl(var(--shadow-soft) / 0.08);
   }
 
   .card-hover:hover {
-    box-shadow: 0 20px 40px -10px hsl(var(--shadow-soft) / 0.15);
+    box-shadow: 0 20px 50px -12px hsl(var(--glow-primary) / 0.2),
+                0 8px 24px -8px hsl(var(--shadow-soft) / 0.1);
   }
 
   .pill-nav {
-    @apply rounded-full bg-[hsl(var(--surface-elevated))] backdrop-blur-lg border border-border/50;
+    @apply rounded-full bg-[hsl(var(--surface-elevated))] backdrop-blur-xl border border-border/40;
+    box-shadow: 0 2px 20px -4px hsl(var(--shadow-soft) / 0.08);
   }
 
   .floating-button {
     @apply w-12 h-12 rounded-full bg-[hsl(var(--cream)/0.9)] backdrop-blur-sm flex items-center justify-center text-[hsl(var(--cream-foreground))] hover:bg-[hsl(var(--cream))] hover:scale-110 transition-all duration-300;
-    box-shadow: 0 4px 12px -2px hsl(var(--shadow-soft) / 0.15);
+    box-shadow: 0 4px 16px -2px hsl(var(--glow-primary) / 0.15);
+  }
+
+  /* Futuristic glow effect */
+  .glow-border {
+    box-shadow: 0 0 20px -5px hsl(var(--glow-primary) / 0.3),
+                inset 0 0 20px -10px hsl(var(--glow-primary) / 0.1);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 30px hsl(var(--glow-primary) / 0.3);
   }
 
   /* Animation keyframes */

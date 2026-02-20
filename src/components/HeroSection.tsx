@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
-    <section className="relative rounded-[2.5rem] overflow-hidden bg-muted my-12 animate-fade-in">
+    <section className="relative rounded-[2.5rem] overflow-hidden bg-card my-12 animate-fade-in glow-border">
       <div className="grid md:grid-cols-2 gap-6 md:gap-12 p-6 md:p-12 lg:p-16">
         {/* Left side - Image */}
         <div className="relative aspect-[4/3] md:aspect-auto rounded-[2rem] overflow-hidden animate-scale-in">
@@ -27,7 +27,7 @@ const HeroSection = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 pt-4 animate-slide-up stagger-2">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 md:px-10 md:py-6 text-base font-medium transition-all hover:scale-105 w-full sm:w-auto">
+            <Button className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground rounded-full px-8 py-4 md:px-10 md:py-6 text-base font-medium transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_-5px_hsl(var(--glow-primary)/0.4)] w-full sm:w-auto">
               <a href="/contact">Get Started</a>
             </Button>
 
