@@ -3,6 +3,7 @@ export interface Course {
   title: string;
   description: string;
   level: "Beginner" | "Intermediate" | "Advanced" | "Premium";
+  category: "Web Development" | "Digital Marketing" | "SaaS & Business" | "AI & Automation" | "Make Money Online";
   duration: string;
   lessons: number;
   price: number;
@@ -14,15 +15,18 @@ export interface Course {
   image: string;
   badge?: string;
   urgency?: string;
+  certification: string;
 }
 
-export const webDevCourses: Course[] = [
+export const allCourses: Course[] = [
+  // ─── Web Development ───
   {
     id: "html-css-fundamentals",
     title: "HTML & CSS from Scratch",
     description:
       "Master the building blocks of the web. Learn semantic HTML, modern CSS layouts with Flexbox and Grid, responsive design, and accessibility best practices. Over 2,400 students enrolled — this is where every successful developer started.",
     level: "Beginner",
+    category: "Web Development",
     duration: "6 weeks",
     lessons: 42,
     price: 10,
@@ -34,6 +38,7 @@ export const webDevCourses: Course[] = [
     image: "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=600&h=400&fit=crop",
     badge: "🔥 Best Seller",
     urgency: "Only 12 spots left at this price",
+    certification: "Certified Front-End Foundations Developer",
   },
   {
     id: "javascript-essentials",
@@ -41,6 +46,7 @@ export const webDevCourses: Course[] = [
     description:
       "Go from zero to confident with JavaScript. Cover variables, functions, DOM manipulation, async programming, APIs, and build real interactive projects. Rated #1 JS course by our community.",
     level: "Beginner",
+    category: "Web Development",
     duration: "8 weeks",
     lessons: 56,
     price: 29,
@@ -52,6 +58,7 @@ export const webDevCourses: Course[] = [
     image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=600&h=400&fit=crop",
     badge: "⭐ Top Rated",
     urgency: "Price increases in 48 hours",
+    certification: "Certified JavaScript Developer",
   },
   {
     id: "react-typescript",
@@ -59,6 +66,7 @@ export const webDevCourses: Course[] = [
     description:
       "Build production-grade applications with React and TypeScript. Learn hooks, state management, routing, testing, and deployment strategies. The skills companies are paying $120k+ salaries for.",
     level: "Intermediate",
+    category: "Web Development",
     duration: "10 weeks",
     lessons: 74,
     price: 79,
@@ -70,6 +78,7 @@ export const webDevCourses: Course[] = [
     image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop",
     badge: "🚀 Most Popular",
     urgency: "87% of graduates landed a job within 3 months",
+    certification: "Certified React & TypeScript Engineer",
   },
   {
     id: "tailwind-ui-design",
@@ -77,6 +86,7 @@ export const webDevCourses: Course[] = [
     description:
       "Design stunning, responsive interfaces using Tailwind CSS. Create custom design systems, animations, dark mode, and component libraries from scratch. Clients will pay you $5k–$15k per project.",
     level: "Intermediate",
+    category: "Web Development",
     duration: "5 weeks",
     lessons: 35,
     price: 49,
@@ -87,6 +97,7 @@ export const webDevCourses: Course[] = [
     topics: ["Tailwind CSS", "Design Systems", "Animations", "Dark Mode", "Accessibility"],
     image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=600&h=400&fit=crop",
     urgency: "Limited-time launch discount",
+    certification: "Certified UI/UX Design Specialist",
   },
   {
     id: "fullstack-nextjs",
@@ -94,6 +105,7 @@ export const webDevCourses: Course[] = [
     description:
       "Go full-stack: databases, authentication, APIs, and deployment. Build complete applications with backend integration, user auth, and real-time features. Stop depending on others — own the entire stack.",
     level: "Advanced",
+    category: "Web Development",
     duration: "12 weeks",
     lessons: 88,
     price: 99,
@@ -105,6 +117,7 @@ export const webDevCourses: Course[] = [
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
     badge: "💼 Career Accelerator",
     urgency: "Enrolment closes Friday",
+    certification: "Certified Full-Stack Developer",
   },
   {
     id: "web-performance",
@@ -112,6 +125,7 @@ export const webDevCourses: Course[] = [
     description:
       "Make your sites blazing fast. Learn Core Web Vitals, lazy loading, code splitting, caching strategies, image optimization, and performance auditing. Fast sites convert 2x more customers.",
     level: "Advanced",
+    category: "Web Development",
     duration: "4 weeks",
     lessons: 28,
     price: 59,
@@ -122,13 +136,242 @@ export const webDevCourses: Course[] = [
     topics: ["Core Web Vitals", "Lighthouse", "Code Splitting", "Caching", "CDN"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
     urgency: "Only 8 spots remaining",
+    certification: "Certified Web Performance Engineer",
   },
+
+  // ─── Digital Marketing ───
+  {
+    id: "social-media-mastery",
+    title: "Social Media Marketing Mastery",
+    description:
+      "Turn followers into paying customers. Master Instagram, TikTok, LinkedIn, and X algorithms. Learn content calendars, viral hooks, and engagement strategies that built 6-figure brands from zero. 93% of our graduates doubled their following in 30 days.",
+    level: "Beginner",
+    category: "Digital Marketing",
+    duration: "6 weeks",
+    lessons: 44,
+    price: 39,
+    originalPrice: 89,
+    rating: 4.8,
+    reviews: 534,
+    enrolled: 4210,
+    topics: ["Instagram", "TikTok", "LinkedIn", "Content Strategy", "Analytics"],
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop",
+    badge: "📱 Trending",
+    urgency: "Algorithm changes make this urgent — enroll now",
+    certification: "Certified Social Media Marketing Strategist",
+  },
+  {
+    id: "seo-google-ads",
+    title: "SEO & Google Ads Domination",
+    description:
+      "Rank #1 on Google and print money with paid ads. Master keyword research, on-page SEO, link building, and Google Ads campaigns. Students average 340% ROI on their first campaign. Your competitors are already using these strategies.",
+    level: "Intermediate",
+    category: "Digital Marketing",
+    duration: "8 weeks",
+    lessons: 52,
+    price: 69,
+    originalPrice: 139,
+    rating: 4.7,
+    reviews: 389,
+    enrolled: 3150,
+    topics: ["SEO", "Google Ads", "Keyword Research", "Link Building", "PPC"],
+    image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&h=400&fit=crop",
+    badge: "📈 High ROI",
+    urgency: "Google's latest update makes this knowledge essential",
+    certification: "Certified SEO & Paid Advertising Specialist",
+  },
+  {
+    id: "email-marketing-funnels",
+    title: "Email Marketing & Sales Funnels",
+    description:
+      "Email still delivers $42 for every $1 spent — the highest ROI in all of marketing. Build automated funnels that sell while you sleep. Learn copywriting, segmentation, A/B testing, and sequences that convert strangers into raving fans.",
+    level: "Intermediate",
+    category: "Digital Marketing",
+    duration: "5 weeks",
+    lessons: 38,
+    price: 49,
+    originalPrice: 99,
+    rating: 4.9,
+    reviews: 267,
+    enrolled: 2890,
+    topics: ["Email Automation", "Copywriting", "Sales Funnels", "A/B Testing", "Segmentation"],
+    image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=600&h=400&fit=crop",
+    badge: "💰 Revenue Machine",
+    urgency: "Limited cohort — only 20 seats",
+    certification: "Certified Email Marketing & Funnel Architect",
+  },
+
+  // ─── AI & Automation ───
+  {
+    id: "ai-marketing-automation",
+    title: "AI-Powered Marketing & Automation",
+    description:
+      "The marketers who master AI will replace the ones who don't. Learn to use ChatGPT, Claude, MidJourney, and automation tools to create content 10x faster, personalize at scale, and build AI-driven campaigns that outperform human-only teams by 300%.",
+    level: "Intermediate",
+    category: "AI & Automation",
+    duration: "7 weeks",
+    lessons: 48,
+    price: 79,
+    originalPrice: 159,
+    rating: 4.9,
+    reviews: 412,
+    enrolled: 3670,
+    topics: ["ChatGPT", "AI Copywriting", "Automation", "MidJourney", "Zapier"],
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
+    badge: "🤖 Future-Proof",
+    urgency: "AI is replacing jobs NOW — get ahead or get left behind",
+    certification: "Certified AI Marketing Automation Specialist",
+  },
+  {
+    id: "ai-content-creation",
+    title: "AI Content Creation & Monetization",
+    description:
+      "Create blogs, videos, courses, and social content at superhuman speed using AI. Learn prompt engineering, AI video editing, voice cloning, and how to build a content empire that generates passive income 24/7. Early adopters are making $10k+/month.",
+    level: "Beginner",
+    category: "AI & Automation",
+    duration: "5 weeks",
+    lessons: 36,
+    price: 49,
+    originalPrice: 99,
+    rating: 4.7,
+    reviews: 298,
+    enrolled: 2540,
+    topics: ["Prompt Engineering", "AI Video", "AI Writing", "Monetization", "Passive Income"],
+    image: "https://images.unsplash.com/photo-1684369175833-4b445ad6f137?w=600&h=400&fit=crop",
+    urgency: "First-mover advantage disappears fast",
+    certification: "Certified AI Content Creator",
+  },
+  {
+    id: "ai-agents-business",
+    title: "Build AI Agents for Business",
+    description:
+      "The $4.6 trillion AI economy needs builders. Learn to create custom AI agents, chatbots, and automated workflows that businesses will pay you $5k–$25k to build. No coding experience required — we start from zero and go to deployed, revenue-generating AI solutions.",
+    level: "Advanced",
+    category: "AI & Automation",
+    duration: "10 weeks",
+    lessons: 64,
+    price: 89,
+    originalPrice: 179,
+    rating: 4.8,
+    reviews: 187,
+    enrolled: 1890,
+    topics: ["AI Agents", "Chatbots", "No-Code AI", "Workflow Automation", "Client Delivery"],
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop",
+    badge: "🧠 Cutting Edge",
+    urgency: "Demand for AI builders grew 900% this year",
+    certification: "Certified AI Solutions Architect",
+  },
+
+  // ─── SaaS & Business ───
+  {
+    id: "saas-from-zero",
+    title: "Launch Your SaaS — Zero to Revenue",
+    description:
+      "Stop building features nobody wants. This battle-tested framework has launched 200+ SaaS products. Learn idea validation, MVP development, pricing strategy, and growth hacking. 68% of graduates hit $1k MRR within 6 months. Your subscription business starts here.",
+    level: "Intermediate",
+    category: "SaaS & Business",
+    duration: "10 weeks",
+    lessons: 72,
+    price: 89,
+    originalPrice: 179,
+    rating: 4.9,
+    reviews: 356,
+    enrolled: 2780,
+    topics: ["Idea Validation", "MVP", "Pricing", "Growth Hacking", "Churn Reduction"],
+    image: "https://images.unsplash.com/photo-1553484771-371a605b060b?w=600&h=400&fit=crop",
+    badge: "🚀 Launch Ready",
+    urgency: "Next cohort starts Monday — limited mentorship slots",
+    certification: "Certified SaaS Founder & Product Strategist",
+  },
+  {
+    id: "saas-growth-scaling",
+    title: "SaaS Growth & Scaling Playbook",
+    description:
+      "You've launched — now scale to $100k ARR and beyond. Master customer acquisition, retention metrics, hiring your first team, fundraising, and the exact playbooks used by companies that went from garage to $10M ARR. This is the MBA they don't teach in school.",
+    level: "Advanced",
+    category: "SaaS & Business",
+    duration: "8 weeks",
+    lessons: 56,
+    price: 79,
+    originalPrice: 159,
+    rating: 4.8,
+    reviews: 203,
+    enrolled: 1650,
+    topics: ["CAC/LTV", "Retention", "Fundraising", "Team Building", "Product-Market Fit"],
+    image: "https://images.unsplash.com/photo-1504607798333-52a30db54a5d?w=600&h=400&fit=crop",
+    urgency: "Investors are watching — be ready",
+    certification: "Certified SaaS Growth Strategist",
+  },
+
+  // ─── Make Money Online ───
+  {
+    id: "freelance-income-blueprint",
+    title: "Freelance Income Blueprint",
+    description:
+      "Replace your 9-to-5 in 90 days. Learn to find high-paying clients on Upwork, Fiverr, and LinkedIn without competing on price. Master proposals, pricing, and client management. Our graduates average $75/hour within 3 months — some hit $150+.",
+    level: "Beginner",
+    category: "Make Money Online",
+    duration: "6 weeks",
+    lessons: 40,
+    price: 39,
+    originalPrice: 79,
+    rating: 4.8,
+    reviews: 567,
+    enrolled: 4890,
+    topics: ["Upwork", "Client Acquisition", "Pricing", "Proposals", "Portfolio"],
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop",
+    badge: "💵 Quick Start",
+    urgency: "Your first client could be this week",
+    certification: "Certified Freelance Business Professional",
+  },
+  {
+    id: "passive-income-systems",
+    title: "Passive Income Systems",
+    description:
+      "Build income streams that work while you sleep. Digital products, affiliate marketing, print-on-demand, and online courses — we cover the 7 most profitable passive income models for 2025. Average student creates 3 income streams within 60 days.",
+    level: "Intermediate",
+    category: "Make Money Online",
+    duration: "8 weeks",
+    lessons: 58,
+    price: 69,
+    originalPrice: 139,
+    rating: 4.7,
+    reviews: 423,
+    enrolled: 3560,
+    topics: ["Digital Products", "Affiliate Marketing", "Print-on-Demand", "Online Courses", "Automation"],
+    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&h=400&fit=crop",
+    badge: "🔄 Recurring Revenue",
+    urgency: "Market saturation increases daily — start now",
+    certification: "Certified Digital Entrepreneur",
+  },
+  {
+    id: "ecommerce-dropshipping",
+    title: "E-Commerce & Dropshipping Accelerator",
+    description:
+      "Launch a profitable online store without inventory. Learn product research, supplier negotiation, Shopify setup, Facebook/TikTok ads, and fulfillment automation. Top students generated $50k+ in their first 90 days. The e-commerce gold rush isn't over — it's just getting smarter.",
+    level: "Intermediate",
+    category: "Make Money Online",
+    duration: "7 weeks",
+    lessons: 50,
+    price: 59,
+    originalPrice: 119,
+    rating: 4.6,
+    reviews: 312,
+    enrolled: 2670,
+    topics: ["Shopify", "Dropshipping", "Facebook Ads", "TikTok Ads", "Product Research"],
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+    urgency: "Q1 is the best time to launch — don't wait",
+    certification: "Certified E-Commerce & Dropshipping Specialist",
+  },
+
+  // ─── Premium Flagship ───
   {
     id: "psychology-of-money-blueprint",
     title: "The Blueprint: Psychology of Money in Business",
     description:
       "This isn't just a course — it's a transformation. Understand the hidden psychology behind every buying decision, pricing strategy, and wealth-building principle. Used by 700+ entrepreneurs to 10x their revenue. You'll never look at money the same way again.",
     level: "Premium",
+    category: "Make Money Online",
     duration: "16 weeks",
     lessons: 120,
     price: 299,
@@ -140,5 +383,9 @@ export const webDevCourses: Course[] = [
     image: "https://images.unsplash.com/photo-1553729459-afe8f2e2ed08?w=600&h=400&fit=crop",
     badge: "👑 Premium Flagship",
     urgency: "Doors close permanently after this cohort",
+    certification: "Certified Business Psychology & Wealth Strategist",
   },
 ];
+
+// Keep backward-compatible export
+export const webDevCourses = allCourses;

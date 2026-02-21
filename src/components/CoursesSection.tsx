@@ -1,5 +1,5 @@
-import { Clock, BookOpen, GraduationCap, Star, Users, AlertTriangle } from "lucide-react";
-import { webDevCourses, Course } from "@/data/courses";
+import { Clock, BookOpen, GraduationCap, Star, Users, AlertTriangle, Award } from "lucide-react";
+import { allCourses, Course } from "@/data/courses";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 
@@ -84,7 +84,7 @@ const CoursesSection = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {webDevCourses.map((course, index) => (
+        {allCourses.map((course, index) => (
           <div
             key={course.id}
             className={`group relative rounded-[2rem] overflow-hidden bg-card hover:bg-muted/60 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_12px_40px_-10px_hsl(var(--glow-primary)/0.2)] animate-slide-up stagger-${Math.min(index + 1, 7)} ${
@@ -136,11 +136,17 @@ const CoursesSection = () => {
                   {course.description}
                 </p>
 
-                {/* Social proof */}
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <Users className="w-3.5 h-3.5" />
-                  <span><strong>{course.enrolled.toLocaleString()}</strong> students enrolled</span>
-                </div>
+                      {/* Certification */}
+                      <div className="flex items-center gap-2 text-xs font-medium text-primary bg-primary/10 px-3 py-2 rounded-lg">
+                        <Award className="w-3.5 h-3.5 shrink-0" />
+                        🎓 {course.certification}
+                      </div>
+
+                      {/* Social proof */}
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <Users className="w-3.5 h-3.5" />
+                        <span><strong>{course.enrolled.toLocaleString()}</strong> students enrolled</span>
+                      </div>
 
                 {/* Meta */}
                 <div className="flex items-center gap-4 text-xs text-muted-foreground">
