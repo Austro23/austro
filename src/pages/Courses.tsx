@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
-import { Clock, BookOpen, GraduationCap, Star, Users, AlertTriangle, Search, SlidersHorizontal } from "lucide-react";
-import { webDevCourses, Course } from "@/data/courses";
+import { Clock, BookOpen, GraduationCap, Star, Users, AlertTriangle, Search, SlidersHorizontal, Award } from "lucide-react";
+import { allCourses, Course } from "@/data/courses";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -65,6 +65,7 @@ const handlePayPal = (course: Course) => {
   document.body.removeChild(form);
 };
 
+const categories = ["All", "Web Development", "Digital Marketing", "SaaS & Business", "AI & Automation", "Make Money Online"] as const;
 const levels = ["All", "Beginner", "Intermediate", "Advanced", "Premium"] as const;
 const sortOptions = [
   { value: "popular", label: "Most Popular" },
@@ -76,17 +77,19 @@ const sortOptions = [
 const Courses = () => {
   const [search, setSearch] = useState("");
   const [level, setLevel] = useState<string>("All");
+  const [category, setCategory] = useState<string>("All");
   const [sort, setSort] = useState("popular");
 
   const filtered = useMemo(() => {
-    let results = webDevCourses.filter((c) => {
+    let results = allCourses.filter((c) => {
       const matchesLevel = level === "All" || c.level === level;
+      const matchesCategory = category === "All" || c.category === category;
       const matchesSearch =
         !search ||
         c.title.toLowerCase().includes(search.toLowerCase()) ||
         c.description.toLowerCase().includes(search.toLowerCase()) ||
         c.topics.some((t) => t.toLowerCase().includes(search.toLowerCase()));
-      return matchesLevel && matchesSearch;
+      return matchesLevel && matchesCategory && matchesSearch;
     });
 
     switch (sort) {
@@ -96,7 +99,7 @@ const Courses = () => {
       default: results.sort((a, b) => b.enrolled - a.enrolled);
     }
     return results;
-  }, [search, level, sort]);
+  }, [search, level, category, sort]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -109,8 +112,31 @@ const Courses = () => {
             All Courses
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Trusted by <strong>20,000+</strong> students. Find the perfect course to level up your career.
+            Trusted by <strong>20,000+</strong> students. Every course includes a <strong>recognized certification</strong> upon completion.
           </p>
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+            <Award className="w-4 h-4" />
+            All courses include an industry-recognized certification
+          </div>
+        </div>
+      </section>
+
+      {/* Category Tabs */}
+      <section className="px-4 pb-4">
+        <div className="max-w-6xl mx-auto flex gap-2 flex-wrap justify-center">
+          {categories.map((c) => (
+            <button
+              key={c}
+              onClick={() => setCategory(c)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                category === c
+                  ? "bg-primary text-primary-foreground shadow-md"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+              }`}
+            >
+              {c}
+            </button>
+          ))}
         </div>
       </section>
 
@@ -132,10 +158,10 @@ const Courses = () => {
               <button
                 key={l}
                 onClick={() => setLevel(l)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
                   level === l
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    ? "bg-secondary text-secondary-foreground shadow-sm"
+                    : "bg-muted/50 text-muted-foreground hover:bg-muted/80"
                 }`}
               >
                 {l}
@@ -168,11 +194,11 @@ const Courses = () => {
             <div className="text-center py-20 text-muted-foreground">
               <Search className="w-12 h-12 mx-auto mb-4 opacity-30" />
               <p className="text-lg font-medium">No courses match your filters</p>
-              <p className="text-sm mt-1">Try adjusting your search or level filter.</p>
+              <p className="text-sm mt-1">Try adjusting your search or filters.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filtered.map((course, index) => (
+              {filtered.map((course) => (
                 <div
                   key={course.id}
                   className={`group relative rounded-2xl overflow-hidden bg-card hover:bg-muted/60 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_12px_40px_-10px_hsl(var(--glow-primary)/0.2)] ${
@@ -188,8 +214,9 @@ const Courses = () => {
                   <div className={course.level === "Premium" ? "md:flex" : ""}>
                     <div className={`relative overflow-hidden ${course.level === "Premium" ? "md:w-1/2 aspect-[3/2] md:aspect-auto" : "aspect-[3/2]"}`}>
                       <img src={course.image} alt={course.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
-                      <div className={`absolute ${course.badge ? "top-10" : "top-4"} left-4`}>
+                      <div className={`absolute ${course.badge ? "top-10" : "top-4"} left-4 flex flex-col gap-1.5`}>
                         <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${levelColor(course.level)}`}>{course.level}</span>
+                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-background/80 text-foreground backdrop-blur-sm">{course.category}</span>
                       </div>
                       <div className={`absolute ${course.badge ? "top-10" : "top-4"} right-4 flex flex-col items-end gap-1`}>
                         <span className="px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-bold">${course.price}</span>
@@ -201,6 +228,12 @@ const Courses = () => {
                       <h3 className={`font-bold tracking-tight leading-tight ${course.level === "Premium" ? "text-2xl md:text-3xl" : "text-xl"}`}>{course.title}</h3>
                       <StarRating rating={course.rating} reviews={course.reviews} />
                       <p className={`text-sm text-muted-foreground leading-relaxed ${course.level === "Premium" ? "" : "line-clamp-3"}`}>{course.description}</p>
+
+                      {/* Certification badge */}
+                      <div className="flex items-center gap-2 text-xs font-medium text-primary bg-primary/10 px-3 py-2 rounded-lg">
+                        <Award className="w-3.5 h-3.5 shrink-0" />
+                        🎓 {course.certification}
+                      </div>
 
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                         <Users className="w-3.5 h-3.5" />
