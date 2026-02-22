@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const levelColor = (level: string) => {
   switch (level) {
@@ -281,6 +282,7 @@ const Courses = () => {
           )}
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
