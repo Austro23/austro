@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -109,6 +110,7 @@ const About = () => {
           </Button>
         </section>
       </main>
+      <Footer />
     </div>
   );
 };

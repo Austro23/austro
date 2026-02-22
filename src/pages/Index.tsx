@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import IntroSection from "@/components/IntroSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -69,46 +70,7 @@ const Index = () => {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="font-semibold mb-4">Services</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/#services" className="hover:text-accent transition-colors">Web Development</a></li>
-                <li><a href="/#services" className="hover:text-accent transition-colors">Shopify Setup</a></li>
-                <li><a href="/#services" className="hover:text-accent transition-colors">Domain Setup</a></li>
-                <li><a href="/#services" className="hover:text-accent transition-colors">Digital Marketing</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Learn</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/blog" className="hover:text-accent transition-colors">Blog</a></li>
-                <li><a href="/#services" className="hover:text-accent transition-colors">Online Courses</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/about" className="hover:text-accent transition-colors">About Us</a></li>
-                <li><a href="/contact" className="hover:text-accent transition-colors">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Legal</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/privacy" className="hover:text-accent transition-colors">Privacy Policy</a></li>
-                <li><a href="/terms" className="hover:text-accent transition-colors">Terms of Service</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>© 2025 Austro-systems. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
