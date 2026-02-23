@@ -16,6 +16,8 @@ export interface Course {
   badge?: string;
   urgency?: string;
   certification: string;
+  subscriptionPrice?: number;
+  paymentType?: "one-time" | "subscription" | "both";
 }
 
 export const allCourses: Course[] = [
@@ -365,6 +367,28 @@ export const allCourses: Course[] = [
   },
 
   // ─── Premium Flagship ───
+  {
+    id: "make-money-websites-ai",
+    title: "Make Money with Websites + AI — The Complete System",
+    description:
+      "The ultimate blueprint to building profitable websites powered by AI. Learn to create, automate, and monetize websites using cutting-edge AI tools — from client sites to SaaS products to AI-powered e-commerce. This is the most comprehensive program we've ever created. Includes 1-on-1 mentorship, private community access, and lifetime updates. Graduates are earning $5k–$50k/month within 6 months.",
+    level: "Premium",
+    category: "Make Money Online",
+    duration: "24 weeks",
+    lessons: 180,
+    price: 600,
+    originalPrice: 1200,
+    subscriptionPrice: 49,
+    paymentType: "both",
+    rating: 5.0,
+    reviews: 892,
+    enrolled: 6200,
+    topics: ["AI Websites", "Web Monetization", "SaaS Building", "Client Acquisition", "Automation", "Passive Income"],
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
+    badge: "👑 ULTIMATE PREMIUM — #1 Best Seller",
+    urgency: "Only 15 mentorship slots remaining — doors close this Friday",
+    certification: "Certified AI Web Business Architect — Industry-Recognized Credential",
+  },
   {
     id: "psychology-of-money-blueprint",
     title: "The Blueprint: Psychology of Money in Business",
