@@ -39,23 +39,38 @@ const StarRating = ({ rating, reviews }: { rating: number; reviews: number }) =>
   </div>
 );
 
-const handlePayPal = (course: Course) => {
+const handlePayPal = (course: Course, type: "one-time" | "subscription" = "one-time") => {
   const form = document.createElement("form");
   form.method = "POST";
   form.action = "https://www.paypal.com/cgi-bin/webscr";
   form.target = "_blank";
 
-  const fields: Record<string, string> = {
-    cmd: "_xclick",
-    business: "gabaemeaobakwe@gmail.com",
-    item_name: course.title,
-    item_number: course.id,
-    amount: course.price.toString(),
-    currency_code: "USD",
-    no_shipping: "1",
-    return: window.location.href,
-    cancel_return: window.location.href,
-  };
+  const fields: Record<string, string> = type === "subscription"
+    ? {
+        cmd: "_xclick-subscriptions",
+        business: "gabaemeaobakwe@gmail.com",
+        item_name: course.title + " (Monthly Subscription)",
+        item_number: course.id,
+        a3: (course.subscriptionPrice ?? 49).toString(),
+        p3: "1",
+        t3: "M",
+        src: "1",
+        currency_code: "USD",
+        no_shipping: "1",
+        return: window.location.href,
+        cancel_return: window.location.href,
+      }
+    : {
+        cmd: "_xclick",
+        business: "gabaemeaobakwe@gmail.com",
+        item_name: course.title,
+        item_number: course.id,
+        amount: course.price.toString(),
+        currency_code: "USD",
+        no_shipping: "1",
+        return: window.location.href,
+        cancel_return: window.location.href,
+      };
 
   Object.entries(fields).forEach(([name, value]) => {
     const input = document.createElement("input");
@@ -187,21 +202,43 @@ const CoursesSection = () => {
                 </p>
 
                 {/* CTA */}
-                <button
-                  onClick={() => handlePayPal(course)}
-                  className={`w-full mt-2 px-6 py-3 rounded-full font-medium text-sm hover:scale-[1.03] transition-all duration-500 flex items-center justify-center gap-2 ${
-                    course.level === "Premium"
-                      ? "bg-gradient-to-r from-primary to-accent text-primary-foreground py-4 text-base font-bold hover:shadow-[0_0_30px_-5px_hsl(var(--glow-primary)/0.4)]"
-                      : "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_-5px_hsl(var(--glow-primary)/0.3)]"
-                  }`}
-                >
-                  <GraduationCap className="w-4 h-4" />
-                  {course.level === "Premium" ? "Enroll Now — Transform Your Business" : `Enroll Now — $${course.price}`}
-                </button>
-
-                <p className="text-center text-[10px] text-muted-foreground">
-                  Secure checkout via PayPal • 30-day money-back guarantee
-                </p>
+                {course.paymentType === "both" ? (
+                  <div className="space-y-2 mt-2">
+                    <button
+                      onClick={() => handlePayPal(course, "subscription")}
+                      className="w-full px-6 py-4 rounded-full font-bold text-base hover:scale-[1.03] transition-all duration-500 flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-[0_0_30px_-5px_hsl(var(--glow-primary)/0.4)]"
+                    >
+                      <GraduationCap className="w-4 h-4" />
+                      Subscribe — ${course.subscriptionPrice}/month
+                    </button>
+                    <button
+                      onClick={() => handlePayPal(course, "one-time")}
+                      className="w-full px-6 py-2.5 rounded-full font-medium text-sm hover:scale-[1.03] transition-all duration-500 flex items-center justify-center gap-2 bg-muted text-foreground hover:bg-muted/80"
+                    >
+                      Or pay once — ${course.price}
+                    </button>
+                    <p className="text-center text-[10px] text-muted-foreground">
+                      Secure checkout via PayPal • 30-day money-back guarantee
+                    </p>
+                  </div>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => handlePayPal(course)}
+                      className={`w-full mt-2 px-6 py-3 rounded-full font-medium text-sm hover:scale-[1.03] transition-all duration-500 flex items-center justify-center gap-2 ${
+                        course.level === "Premium"
+                          ? "bg-gradient-to-r from-primary to-accent text-primary-foreground py-4 text-base font-bold hover:shadow-[0_0_30px_-5px_hsl(var(--glow-primary)/0.4)]"
+                          : "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-[0_0_20px_-5px_hsl(var(--glow-primary)/0.3)]"
+                      }`}
+                    >
+                      <GraduationCap className="w-4 h-4" />
+                      {course.level === "Premium" ? "Enroll Now — Transform Your Business" : `Enroll Now — $${course.price}`}
+                    </button>
+                    <p className="text-center text-[10px] text-muted-foreground">
+                      Secure checkout via PayPal • 30-day money-back guarantee
+                    </p>
+                  </>
+                )}
               </div>
             </div>
           </div>
