@@ -5,31 +5,37 @@ const services = [
     icon: Globe,
     title: "Web Development",
     description: "Custom websites built with modern technologies. From landing pages to complex web applications, we deliver responsive, fast, and beautiful digital experiences.",
+    href: "/contact",
   },
   {
     icon: ShoppingBag,
     title: "Shopify Store Setup",
     description: "Complete Shopify store setup including theme customization, product listings, payment integration, and launch-ready configurations.",
+    href: "/contact",
   },
   {
     icon: Link,
-    title: "Domain Setup",
-    description: "Domain registration, DNS configuration, SSL certificates, and email hosting setup—we handle the technical foundations so you don't have to.",
+    title: "Domain Registration",
+    description: "Search, register, and manage your perfect domain name. 500+ TLDs available with WHOIS privacy, DNS management, and instant setup included.",
+    href: "/domains",
   },
   {
     icon: MessageSquare,
     title: "Web Dev Consultancy",
     description: "Expert guidance on technology choices, architecture planning, performance optimization, and digital strategy for your business.",
+    href: "/contact",
   },
   {
     icon: Megaphone,
     title: "Digital Marketing",
     description: "SEO, social media management, paid advertising, and content strategy designed to increase your online visibility and drive conversions.",
+    href: "/contact",
   },
   {
     icon: BookOpen,
     title: "Online Courses",
-    description: "Learn web development, Shopify, and digital marketing through our structured online courses. Self-paced learning with real-world projects.",
+    description: "Master Shopify, digital marketing, and AI money-making through our structured courses. Self-paced learning with real-world projects.",
+    href: "/courses",
   },
 ];
 
@@ -45,16 +51,17 @@ const ServicesSection = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service, index) => (
-          <div
+          <a
             key={service.title}
-            className={`p-8 rounded-[2rem] bg-card hover:bg-muted/60 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_8px_40px_-10px_hsl(var(--glow-primary)/0.15)] animate-slide-up stagger-${Math.min(index + 1, 6)}`}
+            href={service.href}
+            className={`block p-8 rounded-[2rem] bg-card hover:bg-muted/60 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_8px_40px_-10px_hsl(var(--glow-primary)/0.15)] animate-slide-up stagger-${Math.min(index + 1, 6)}`}
           >
-            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 transition-all duration-500 group-hover:bg-primary/20">
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 transition-all duration-500">
               <service.icon className="w-7 h-7 text-primary" />
             </div>
             <h3 className="text-xl font-bold mb-3">{service.title}</h3>
             <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-          </div>
+          </a>
         ))}
       </div>
     </section>
