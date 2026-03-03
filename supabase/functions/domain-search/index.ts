@@ -7,6 +7,14 @@ const corsHeaders = {
 
 const NAMECOM_API = "https://api.name.com/v4";
 
+function formatNameComError(action: string, status: number, data: unknown) {
+  if (status === 403) {
+    return `Name.com ${action} denied (403 Permission Denied). Whitelist the Lovable Cloud outbound IP 44.245.23.74 in your Name.com API settings, then verify your API user/token permissions.`;
+  }
+
+  return `Name.com ${action} failed [${status}]: ${JSON.stringify(data)}`;
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -39,7 +47,7 @@ serve(async (req) => {
 
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(`Name.com search failed [${response.status}]: ${JSON.stringify(data)}`);
+        throw new Error(formatNameComError("search", response.status, data));
       }
 
       return new Response(JSON.stringify(data), {
@@ -59,7 +67,7 @@ serve(async (req) => {
 
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(`Name.com check failed [${response.status}]: ${JSON.stringify(data)}`);
+        throw new Error(formatNameComError("availability check", response.status, data));
       }
 
       return new Response(JSON.stringify(data), {
@@ -77,7 +85,7 @@ serve(async (req) => {
 
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(`Name.com pricing failed [${response.status}]: ${JSON.stringify(data)}`);
+        throw new Error(formatNameComError("pricing", response.status, data));
       }
 
       return new Response(JSON.stringify(data), {
